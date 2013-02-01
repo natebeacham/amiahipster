@@ -10,14 +10,16 @@ usage:
 
 import sys
 
-f = open(sys.argv[1])
+file_name = sys.argv[1]
+
+f = open(file_name)
 
 lines = [line.replace('\n', '') for line in f.readlines()]
 lines = [line for line in lines if line]
 
 semis = filter(lambda line: ';' in line, lines)
 
-if len(semis) < len(lines) / 10:
+if file_name.endswith('.coffee') or len(semis) < len(lines) / 10:
 	print "Yeah, you're probably a hispter."
 else:
 	print "Nope, you're probably not a hipster."
