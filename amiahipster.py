@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-'''
+USAGE = '''
 Python script to determine if you are a hipster
 when writing JavaScript
 
@@ -10,7 +10,11 @@ usage:
 
 import sys
 
-file_name = sys.argv[1]
+try:
+	file_name = sys.argv[1]
+except IndexError:
+	print USAGE
+	sys.exit(0)
 
 f = open(file_name)
 
@@ -20,6 +24,6 @@ lines = [line for line in lines if line]
 semis = filter(lambda line: ';' in line, lines)
 
 if file_name.endswith('.coffee') or len(semis) < len(lines) / 10:
-	print "Yeah, you're probably a hispter."
+	print "Yeah, you're probably a hipster."
 else:
 	print "Nope, you're probably not a hipster."
